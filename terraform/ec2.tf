@@ -16,3 +16,4 @@ resource "aws_eip" "HarborPublicIP" {
   instance = "${element(aws_instance.harbor_instance.*.id, count.index)}"
   vpc      = true
 }
+
