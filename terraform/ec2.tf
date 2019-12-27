@@ -17,3 +17,7 @@ resource "aws_eip" "HarborPublicIP" {
   vpc      = true
 }
 
+
+
+
+
