@@ -51,8 +51,7 @@ resource "aws_route_table_association" "PubSubnetRT" {
 
 resource "aws_network_acl" "ACL" {
   vpc_id = "${aws_vpc.VPC.id}"
-  subnet_ids = "${concat(aws_subnet.PublicSubnet.*.id,
-  aws_subnet.PrivateSubnet.*.id)}"
+  subnet_ids = "${concat(aws_subnet.PublicSubnet.*.id)}"
   egress {
     protocol   = -1
     rule_no    = 100
