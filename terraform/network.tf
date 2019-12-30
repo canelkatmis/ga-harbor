@@ -15,6 +15,7 @@ resource "aws_vpc" "VPC" {
     Environment = "${var.environment_tag}"
   }
 }
+
 resource "aws_subnet" "PublicSubnet" {
   vpc_id            = "${aws_vpc.VPC.id}"
   count             = "${length(var.public_subnets)}"
