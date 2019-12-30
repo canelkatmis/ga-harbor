@@ -53,6 +53,7 @@ resource "aws_route_table_association" "PubSubnetRT" {
   route_table_id = "${aws_route_table.RT_PUB.id}"
 }
 
+
 resource "aws_network_acl" "ACL" {
   vpc_id     = "${aws_vpc.VPC.id}"
   subnet_ids = "${concat(aws_subnet.PublicSubnet.*.id)}"
