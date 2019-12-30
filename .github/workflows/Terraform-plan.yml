@@ -2,11 +2,16 @@ name: Terraform-Plan
 
 on:
   pull_request:
+    branches:
+    - master
+    - env_*
     paths:
+    - '*'
     - 'test/*'
+    - '!.github/*'
+    #- '!*.md'
 env:
-  TF_ACTIONS_VERSION: '0.12.18'
-  TF_ACTIONS_WORKING_DIR: './test'
+  TF_ACTIONS_VERSION: '0.12.13'
    
 jobs:
   Plan-for-AWS:
@@ -15,52 +20,47 @@ jobs:
       - name: pull
         uses: actions/checkout@v1
 
-#       - name: Configure AWS Credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: eu-central-1
-
       - name: terraform-format
-        uses: canelkatmis/terraform-github-actions@v0.6.4
+        uses: canelkatmis/terraform-github-actions@v0.5.0
         with:
-          tf_actions_subcommand:  'fmt'
           tf_actions_version:     ${{ env.TF_ACTIONS_VERSION }}
-          tf_actions_working_dir: ${{ env.TF_ACTIONS_WORKING_DIR }}
+          tf_actions_subcommand:  'fmt'
+          tf_actions_working_dir: './test'
+          tf_actions_comment:     true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: terraform-init
-        uses: canelkatmis/terraform-github-actions@v0.6.4
+        uses: canelkatmis/terraform-github-actions@v0.5.0
         with:
-          tf_actions_subcommand:  'init'
           tf_actions_version:     ${{ env.TF_ACTIONS_VERSION }}
-          tf_actions_working_dir: ${{ env.TF_ACTIONS_WORKING_DIR }}
-          tf_actions_cli_credentials_token: ${{ secrets.TF_ACTION_TFE_TOKEN }}
+          tf_actions_subcommand:  'init'
+          tf_actions_working_dir: './test'
+          tf_actions_comment:     true
         env:
           GITHUB_TOKEN:          ${{ secrets.GITHUB_TOKEN }}
+          AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          TF_CLI_ARGS_init:      '-backend-config="token=${{ secrets.TF_ACTION_TFE_TOKEN }}"'
 
       - name: terraform-validate
-        uses: canelkatmis/terraform-github-actions@v0.6.4
+        uses: canelkatmis/terraform-github-actions@v0.5.0
         with:
-          tf_actions_subcommand:  'validate'
           tf_actions_version:     ${{ env.TF_ACTIONS_VERSION }}
-          tf_actions_working_dir: ${{ env.TF_ACTIONS_WORKING_DIR }}
+          tf_actions_subcommand:  'validate'
+          tf_actions_working_dir: './test'
+          tf_actions_comment:     true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: terraform-plan
-        uses: canelkatmis/terraform-github-actions@v0.6.4
+        uses: canelkatmis/terraform-github-actions@v0.5.0
         with:
-          tf_actions_subcommand:  'plan'
           tf_actions_version:     ${{ env.TF_ACTIONS_VERSION }}
-          tf_actions_working_dir: ${{ env.TF_ACTIONS_WORKING_DIR }}
-          #tf_actions_cli_credentials_token: ${{ secrets.TF_ACTION_TFE_TOKEN }}
-          args: '-backend-config="token=${{ secrets.TF_ACTION_TFE_TOKEN }}" -backend-config="organization=canelkatmis"'
+          tf_actions_subcommand:  'plan'
+          tf_actions_working_dir: './test'
+          tf_actions_comment:     true
         env:
           GITHUB_TOKEN:          ${{ secrets.GITHUB_TOKEN }}
-          #TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          #TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
