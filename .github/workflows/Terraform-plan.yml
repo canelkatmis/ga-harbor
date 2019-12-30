@@ -3,7 +3,7 @@ name: Terraform-Plan
 on:
   pull_request:
     paths:
-    - 'terraform/*'
+    - 'test/*'
 env:
   TF_ACTIONS_VERSION: '0.12.13'
   TF_ACTIONS_WORKING_DIR: './terraform'
