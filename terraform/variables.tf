@@ -33,3 +33,4 @@ variable "harbor_instance" {
     type  = "t2.micro"
   }
 }
+
