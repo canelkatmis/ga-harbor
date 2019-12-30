@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: terraform-plan
-        uses: canelkatmis/terraform-github-actions@v0.5.3
+        uses: canelkatmis/terraform-github-actions@v0.6.4
         with:
           tf_actions_subcommand:  'plan'
           tf_actions_version:     ${{ env.TF_ACTIONS_VERSION }}
