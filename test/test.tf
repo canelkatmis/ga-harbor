@@ -8,7 +8,7 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "canelkatmis"
     workspaces {
-      name = "canetest4"
+      name = "canetest5"
     }
   }
 }
