@@ -46,6 +46,7 @@ resource "aws_route_table" "RT_PUB" {
     Environment = "${var.environment_tag}"
   }
 }
+
 resource "aws_route_table_association" "PubSubnetRT" {
   count          = "${length(var.public_subnets)}"
   subnet_id      = "${element(aws_subnet.PublicSubnet.*.id, count.index)}"
