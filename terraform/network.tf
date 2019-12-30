@@ -2,7 +2,9 @@ provider "aws" {
   region = "${var.region}"
 }
 
+
 data "aws_availability_zones" "available" {}
+
 
 resource "aws_vpc" "VPC" {
   cidr_block           = "${var.vpc_cidr}"
