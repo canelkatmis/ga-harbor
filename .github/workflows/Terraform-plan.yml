@@ -6,7 +6,7 @@ on:
     - 'test/*'
 env:
   TF_ACTIONS_VERSION: '0.12.13'
-  TF_ACTIONS_WORKING_DIR: './terraform'
+  TF_ACTIONS_WORKING_DIR: './test'
    
 jobs:
   Plan-for-AWS:
