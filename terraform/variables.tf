@@ -10,17 +10,14 @@ variable "vpc_cidr" {
   description = "VPC Network CIDR like 172.22.0.0/16, 10.0.0.0/16"
   default     = "10.14.0.0/16"
 }
-
 variable "public_subnets" {
   description = "Public Subnet"
   default     = ["10.14.0.0/24"]
 }
-
 variable "private_subnets" {
   description = "Private Subnet"
   default     = ["10.14.10.0/24"]
 }
-
 variable "ec2_keypair" {
   description = "The name of keypair that you need while logging via SSH"
   default     = "canstack"
@@ -29,7 +26,6 @@ variable "ec2_username" {
   description = "The name of user that you need while logging via SSH"
   default     = "ubuntu"
 }
-
 variable "harbor_instance" {
   default = {
     count = "1"
@@ -37,4 +33,3 @@ variable "harbor_instance" {
     type  = "t2.micro"
   }
 }
-
