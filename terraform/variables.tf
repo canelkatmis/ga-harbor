@@ -27,6 +27,7 @@ variable "ec2_username" {
   description = "The name of user that you need while logging via SSH"
   default     = "ubuntu"
 }
+
 variable "harbor_instance" {
   default = {
     count = "1"
