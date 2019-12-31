@@ -10,6 +10,7 @@ variable "vpc_cidr" {
   description = "VPC Network CIDR like 172.22.0.0/16, 10.0.0.0/16"
   default     = "10.14.0.0/16"
 }
+
 variable "public_subnets" {
   description = "Public Subnet"
   default     = ["10.14.0.0/24"]
