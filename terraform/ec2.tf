@@ -11,6 +11,7 @@ resource "aws_instance" "harbor_instance" {
     Environment = "${var.environment_tag}"
   }
 }
+
 resource "aws_eip" "HarborPublicIP" {
   count    = "${var.harbor_instance["count"]}"
   instance = "${element(aws_instance.harbor_instance.*.id, count.index)}"
