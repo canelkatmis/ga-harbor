@@ -3,10 +3,10 @@ name: Terraform-Plan
 on:
   pull_request:
     paths:
-    - 'test/*'
+    - 'terraform/*'
 env:
   TF_ACTIONS_VERSION: '0.12.18'
-  TF_ACTIONS_WORKING_DIR: './test'
+  TF_ACTIONS_WORKING_DIR: './terraform'
    
 jobs:
   Plan-for-AWS:
