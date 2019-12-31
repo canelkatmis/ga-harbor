@@ -20,6 +20,7 @@ variable "private_subnets" {
   description = "Private Subnet"
   default     = ["10.14.10.0/24"]
 }
+
 variable "ec2_keypair" {
   description = "The name of keypair that you need while logging via SSH"
   default     = "canstack"
