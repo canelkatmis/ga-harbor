@@ -12,7 +12,8 @@ env:
 
 jobs:
   Apply-to-AWS:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true &&
+        github.event.pull_request.title != 'terraform destroy'
     runs-on: ubuntu-latest
 
     steps:     
