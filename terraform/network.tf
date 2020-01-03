@@ -2,7 +2,6 @@ provider "aws" {
   region = "${var.region}"
 }
 
-
 data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "VPC" {
