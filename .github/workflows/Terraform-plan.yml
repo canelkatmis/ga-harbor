@@ -4,7 +4,11 @@ on:
   pull_request:
     paths:
     - 'terraform/*'
-    types: [opened, edited, reopened, synchronize]
+    types:
+    - opened
+    - edited
+    - reopened
+    - synchronize
     
 env:
   TF_ACTIONS_VERSION: '0.12.18'
@@ -12,6 +16,7 @@ env:
    
 jobs:
   Plan-for-AWS:
+    if: github.event.pull_request.title != 'terraform destroy'
     runs-on: ubuntu-latest
     steps:
       - name: pull
