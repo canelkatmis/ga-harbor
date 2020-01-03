@@ -5,10 +5,7 @@ on:
     paths:
     - 'terraform/*'
     types:
-      - opened
-      - reopened
-      - edited
-      - synchronize
+      - closed
 
 env:
   TF_ACTIONS_VERSION: '0.12.18'
