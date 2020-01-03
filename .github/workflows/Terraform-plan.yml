@@ -55,7 +55,7 @@ jobs:
       - name: terraform-plan
         uses: canelkatmis/terraform-github-actions@v0.6.4
         with:
-          tf_actions_subcommand:  'plan'
+          tf_actions_subcommand:  'plan -destroy'
           tf_actions_version:     ${{ env.TF_ACTIONS_VERSION }}
           tf_actions_working_dir: ${{ env.TF_ACTIONS_WORKING_DIR }}
           tf_actions_cli_credentials_token: ${{ secrets.TF_ACTION_TFE_TOKEN }}
