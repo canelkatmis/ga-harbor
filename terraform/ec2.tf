@@ -1,4 +1,3 @@
-
 resource "aws_instance" "harbor_instance" {
   ami                     = var.harbor_instance["ami"]
   instance_type           = var.harbor_instance["type"]
