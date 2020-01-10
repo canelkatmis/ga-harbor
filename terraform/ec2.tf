@@ -6,6 +6,7 @@ resource "aws_instance" "harbor_instance" {
   count                   = var.harbor_instance["count"]
   subnet_id               = element(aws_subnet.PublicSubnet.*.id, count.index)
   vpc_security_group_ids  = ["${aws_security_group.harbor_instance_sg.id}"]
+  user_data               = file("${path.cwd}/scripts/install-ansible.sh")
   tags = {
     Name        = "harbor_instance-${count.index}.${var.environment_tag}"
     Environment = var.environment_tag
